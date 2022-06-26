@@ -10,8 +10,7 @@ var gamepads = {};
 var gamepad;
 var gamepadPos;
 
-window.addEventListener(
-    "gamepadconnected",
+window.addEventListener("gamepadconnected",
     function (e) {
         gamepads = navigator.getGamepads();
         gamepadPos = e.gamepad.index;
@@ -27,25 +26,13 @@ function updateControllers() {
 }
 
 
-function play() {
-
-    gamepad.vibrationActuator.playEffect("dual-rumble", {
-        startDelay: 0,
-        duration: 500,
-        weakMagnitude: .01,
-        strongMagnitude: .4
-    });
-
-}
-
-
 addEventListener("gamepadconnected", ()=>{
     
     pen.style.height = 100
     pen.style.width = 100
 
     pen.style.borderRadius = "50%"
-
+    
     setInterval(()=>{
         
         updateControllers()
@@ -64,7 +51,6 @@ addEventListener("gamepadconnected", ()=>{
     
     }, 1);
 })
-
 
 
 })
