@@ -20,15 +20,15 @@ let doc = document
     dotNum: 0,
     store: [],
     storeName: [],
-    penready: true,
+    pen_ready: true,
     makeDivId(_id){
         let div = document.createElement("div")
         div.id = _id
         document.body.appendChild(div)
     },
     
-    coseineY: 0,
-    coseineX: 0,
+    cosineY: 0,
+    cosineX: 0,
     sineX: 0,
     sineY: 0,
 
@@ -69,11 +69,9 @@ function setup(_text) {
     naf.makeDivId("pen")
     
 
-    setTimeout(()=>{
 
-        _text()
 
-    }, 500)
+    _text()
 
 }
 
@@ -115,7 +113,7 @@ let pen = {
 
         reset(){
 
-            this.color = "#00000000"
+            this.color = "#000000"
 
             this.height = 100
 
@@ -199,7 +197,7 @@ let pen = {
      * Makes a rectangle on the html/website.
      */
 
-    async image(_img, xPostion, yPostion){
+    async image(_img, xPosition, yPosition){
         
         let div = await loadImage(_img)
         div.id = _img
@@ -214,7 +212,7 @@ let pen = {
     
         document.getElementById("pen").appendChild(div)
         
-        naf.penready = false
+        naf.pen_ready = false
 
     },
     clear(){
@@ -226,13 +224,13 @@ let pen = {
 /** @default
  * Math
  * 
- * findes the cordinate between x1,y1 and x2,y2 wit the percent
+ * Finds coordinates between x1,y1 and x2,y2 wit the percent
  * 
- * lerp{
+ *  lerp {
         let percent = _percent * 2;
         let x =  ((x1 * (2 - percent)) + (x2 * percent)) / 2;
         return ( x );
- }
+    }
  */
 let lerp  = {
     x(x1, x2, _percent){
@@ -298,7 +296,7 @@ function abs(element) {
 
 /** @default
  * Math
- * Gives you a the distance between the cordinates
+ * Gives you a the distance between the coordinates
  * 
  *  distance(x1, y1, x2, y2){
         return( Math.sqrt((x1 - x2)**2 + (y1 - y2)**2) )
@@ -323,14 +321,14 @@ function point(x1, y1, x2, y2){
 /** @default
  * Math
  * 
- * gives a nummber betwwen 0 and element
- * you can add desimals by saying true on "desimal"
+ * gives a number between 0 and element
+ * you can add decimals by setting "decimal" to true
  */
-function random(_element, desimal) {
+function random(_element, decimal) {
 
     let rem = Math.random()*_element
 
-    if (not(desimal)){
+    if (not(decimal)){
         rem = Math.round(rem)
     }
 
@@ -360,7 +358,7 @@ function and(a,b){
  * false = 0
  */
 function not(a) {
-    return(!a)
+    return !a
 }
 
 function mod(a, b) {
@@ -488,20 +486,20 @@ let v3 = {
         inScreen: false,
     },
     func:{
-        calkulate(){
+        calculate(){
 
-            naf.coseineY = cos(v3.var.ry)
+            naf.cosineY = cos(v3.var.ry)
             naf.sineY = sin(v3.var.ry)
 
-            naf.coseineX = cos(v3.var.rx)
+            naf.cosineX = cos(v3.var.rx)
             naf.sineX = sin(v3.var.rx)
             
         },
 
         placeDot(_x,_y,_z){
             naf.setPoint(_x-v3.var.x, _y-v3.var.y, _z-v3.var.z)
-            naf.setPoint( ( _z * naf.sineY ) + ( _x * naf.coseineY ), _y, ( _z * naf.coseineY ) - ( _x * naf.sineY ) )
-            naf.setPoint( _x , ( _y * naf.coseineX ) + ( _z * naf.sineX ) , ( _y * naf.sineX ) - ( _z * naf.coseineX ) )
+            naf.setPoint( ( _z * naf.sineY ) + ( _x * naf.cosineY ), _y, ( _z * naf.cosineY ) - ( _x * naf.sineY ) )
+            naf.setPoint( _x , ( _y * naf.cosineX ) + ( _z * naf.sineX ) , ( _y * naf.sineX ) - ( _z * naf.cosineX ) )
             
             v3.var.inScreen = naf.z < 10
 
